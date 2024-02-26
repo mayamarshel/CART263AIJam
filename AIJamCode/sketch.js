@@ -3,6 +3,10 @@
 //Pippin: timers (https://pippinbarr.com/cart253/topics/time/timers.html), use of random (https://www.youtube.com/watch?v=RRJ__WoK7dc), 
 //Mathilde: help with HTML changing 
 
+//Model might take a little bit to initialize after you have clicked draw so be aware of that
+//also when you are in the part where the model actually draws the sketch you can click draw multiple times to get differnt variations of 
+//the chosen word. you can also try differnt words in the drop down 
+
 
  //model chosen: Initialize Model
 let model;
@@ -122,7 +126,7 @@ function countDown(){
     document.body.style.backgroundColor = "white";
       //calls change value function and sets parameters using random value function to pick a random value from 
       //the respective arrays 
-    changeValues(randomValue(option1), randomValue(option2), randomValue(option2), 'we bought a ')
+    changeValues(randomValue(option1), randomValue(option2), randomValue(option3), 'Today at the park I saw a ')
     state = 'actualStory'
     }
 }
@@ -182,7 +186,7 @@ document.body.style.backgroundColor = "black";
 background(0)
 push()
 fill(255)
-text('i do not understand', 300, 300)
+text('i do not understand', 280, 300)
 text('try again', 300, 330)
 pop()
 }
