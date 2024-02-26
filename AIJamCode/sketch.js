@@ -1,6 +1,6 @@
 // Citations:
-//ML5 SketchRNN framework- 
-//Pippin: timers, use of random, 
+//ML5 SketchRNN framework- https://editor.p5js.org/ml5/sketches/SketchRNN_basic
+//Pippin: timers (https://pippinbarr.com/cart253/topics/time/timers.html), use of random (https://www.youtube.com/watch?v=RRJ__WoK7dc), 
 //Mathilde: help with HTML changing 
 
 
@@ -18,7 +18,7 @@ let position = 0;
 let timer = 0;
 let waitLength = 60 * 3
  //begins states
-let state = 'start'
+let state = 'title'
 
  //arrays for options to make piece different each time- allows for lots of exploration
 let option1 = ['antyoga', 'beeflower', 'bulldozer', 'catbus', 'catpig', 'crabchair']
@@ -28,11 +28,11 @@ let option3 = ['lionsheep', 'monapassport', 'pigsheep', 'rabbitturtle', 'radiofa
 
 function setup() {
   createCanvas(750, 600);
-  background(247, 171, 229);
+  screens();
 
-    //press button to draw with selectedValue
-  let button = createButton('draw');
-  button.mousePressed(startDrawing);
+   //press button to draw with selectedValue
+   let button = createButton('draw');
+   button.mousePressed(startDrawing);
 }
 
 function startStory(){
@@ -80,7 +80,14 @@ function draw() {
   if (state === 'blackScreen'){
     countDown();
   }
+
+  if (keyIsPressed === true && state === 'title'){
+    startScreen()
+  }
 }
+
+
+
    //new stroke path to follow
 function gotStroke(err, s) {
   strokePath = s;
@@ -106,23 +113,7 @@ function selectOption() {
   
 }
 
-function turnScreenBlack() {
-    //turns canvas and window screen to black and displays text 
-  document.body.style.backgroundColor = "black";
-  background(0)
-  push()
-  fill(255)
-  text('i do not understand', 300, 300)
-  text('try again', 300, 330)
-  pop()
-  const dropDown = document.getElementById('dropDown');
-
-    // Apply black background color using JavaScript
-  dropDown.style.backgroundColor = "black";
-
-//ADD CODE to change the button colors to black too
-}
-
+//TIMER
 function countDown(){
     //counts down to the waitlength on the black screen and then changes it back to original colors
   timer++;
@@ -134,9 +125,10 @@ function countDown(){
     changeValues(randomValue(option1), randomValue(option2), randomValue(option2), 'we bought a ')
     state = 'actualStory'
     }
-
 }
 
+
+//MATH AND DROPDOWN
 function changeValues(first, second, third, text){
   //initial function for changing values by parameters for dropdown 
 document.getElementById('text').innerText = text
@@ -151,6 +143,53 @@ function randomValue(array){
   const randomIndex = Math.floor(Math.random() * array.length);
     return array[randomIndex];
 }
+
+
+//SCREENS
+function titleScreen() {
+  push();
+  textSize(50);
+  fill(250, 0, 200)
+  text('Lets Draw a Story', 170, 300)
+  pop()
+
+  push();
+  textSize(30);
+  fill(250, 0, 200)
+  text('Press Space to Begin', 180, 350)
+  pop();
+
+  state = 'title'
+}
+
+function startScreen() {
+  background(247, 171, 229);
+  state = 'start'
+}
+
+function screens() {
+  if(state === 'title'){
+    titleScreen()
+  }
+  else if(state === 'start'){
+    startScreen()
+  }
+}
+
+function turnScreenBlack() {
+  //turns canvas and window screen to black and displays text 
+document.body.style.backgroundColor = "black";
+background(0)
+push()
+fill(255)
+text('i do not understand', 300, 300)
+text('try again', 300, 330)
+pop()
+}
+
+
+
+
 
 
 
