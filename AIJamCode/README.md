@@ -1,14 +1,14 @@
 # Template p5 project
 
-Ideas for the story:
+Please go through the actual experience before reading this:
 
-Today I woke up and right outside my window was a __(bird, cat, butterfly)__
-It was startled by the sound of the __(alarm_clock, ambulance, yogabicycle)__
-So startled that it ran right into a __(bulldozer, catbus, bus)__
-So I went outside with my __(crabrabbitfacepig, monapassport, beeflower)__ to make sure everything was okay
-Where did my __(rabbitturtle, radioface, crabchair)__ go??
-It was my __(everything)__
+SketchRNN is a library that is able to take a word and, using its algorithm pretrained on thousands of human sketches, creates a unique rough sketch of the selected word. When exploring the SketchRNN library I found my way to the models that the algorithm has been train on- ie the things you could have the program figure out how to draw. They seemed pretty normal at first glace but looking further I found there were models such as 'antyoga', 'beeflower', and my personal favorite 'everything'. This was wildly entertaining to me and made me start thinking about how these models really work. 
 
+If you are not familiar with it, modern day machine learning works on an unsupervised learning structure where humans only put in the data and then the computer creates the categories to sort it (unlike supervised learning where the human would give the data and the categories and the machine would only do the sorting). This makes it so that the way in which the data is sorted and categorized can become a mystery to even the person that codes it. Therefore, a machine can understand perfectly what 'crabrabbitfacepig' means while it remains a mystery to the human who has created it. 
+
+Here I wanted to discuss this mystery not necessarily as a bad thing but just as something that should be kept in mind as we more towards a more automated world. What decisions can be left as a mystery? What decisions would it be good to know how it is being sorted? How can having a tool of distinctly different thinking effect our creativity? What new connections can we make?
+
+I have included the list of models you can choose from just for your own enjoyment:
 
  'alarm_clock',
   'ambulance',
