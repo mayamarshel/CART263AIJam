@@ -20,46 +20,47 @@ let position = 0;
 
 let modelStart = false;
 
+let timer = 0;
+let waitLength = 60 * 4
+let state = 'start'
+
+let option1 = ['antyoga', 'beeflower', 'bulldozer', 'catbus', 'catpig', 'crabchair']
+let option2 = ['crabrabbitfacepig', 'dogbunny', 'elephantpig', 'floweryoga', 'frogsofa', 'hedgeberry']
+let option3 = ['lionsheep', 'monapassport', 'pigsheep', 'rabbitturtle', 'radioface', 'everything']
+
+
 
 function setup() {
-  createCanvas(900, 750);
+  createCanvas(750, 600);
   background(247, 171, 229);
 
   
 
        // // Button to reset drawing
-       // let button = createButton('clear');
-       // button.mousePressed(startDrawing);
+  let button = createButton('clear');
+  button.mousePressed(startDrawing);
    //button to change text
-  let button2 = createButton('next');
-  button2.mousePressed(changeValues);
-  
-
+  // let button2 = createButton('next');
+  // button2.mousePressed(changeValues('ant', 'butterfly', 'cactus', 'this is a test'));
 }
 
-function keyPressed(){
-  push();
-  fill(255);
-  text('loading...', 10, 350)
-  pop();
-
-  if (selectedValue != 'blank') {
+function startStory(){
+  if (state = 'actualStory') {
     model = ml5.sketchRNN(selectedValue);
-    startDrawing();  }
+    startDrawing()
+      }
 }
 
 
 function startDrawing() {
-  x = 50;
-  y = 200;
+  background(247, 171, 229)
+  x = 300;
+  y = 300;
   model.reset();
   // Generate the first stroke path
   model.generate(gotStroke);
-  position = position + 50;
-  console.log(position)
-  console.log('i am drawing')
-}
 
+}
 
 
 function draw() {
@@ -68,7 +69,6 @@ function draw() {
   if (strokePath) {
       //check if the pen is down to start drawing 
     if (previous_pen == 'down') {
-      fill(187, 131, 247)
       stroke(0);
       strokeWeight(3.0);
       line(x, y, x + strokePath.dx, y + strokePath.dy);
@@ -84,14 +84,15 @@ function draw() {
     if (strokePath.pen !== 'end') {
       strokePath = null;
       model.generate(gotStroke);
-      selectedValue = 'blank'
-      changeValues('ant', 'butterfly', 'cactus', 'this is a test');
     }
+  }
+
+  if (state === 'blackScreen'){
+    countDown();
   }
 }
 
-
-
+ 
 
 // A new stroke path
 function gotStroke(err, s) {
@@ -104,8 +105,14 @@ function selectOption() {
   let dropdown = document.getElementById('dropdown');
   let selectedIndex = dropdown.selectedIndex;
   selectedValue = dropdown.options[selectedIndex].text;
-  //getElementByClassName
+  console.log('value is ' + selectedValue)
+
+  turnScreenBlack()
+  state = 'blackScreen'
+
+  
 }
+
 
 function changeValues(first, second, third, text){
   document.getElementById('text').innerText = text
@@ -115,6 +122,33 @@ function changeValues(first, second, third, text){
   document.getElementById('option3').innerText = third
 
 }
+
+function turnScreenBlack() {
+  document.body.style.backgroundColor = "black";
+  background(0)
+  push()
+  fill(255)
+  text('i do not understand', 300, 300)
+  text('try again', 300, 330)
+  pop()
+//ADD CODE to change the button colors to black too
+}
+
+function countDown(){
+  timer++;
+  if (timer >= waitLength) {
+    background(247, 171, 229)
+    document.body.style.backgroundColor = "white";
+    changeValues('yogabicycle', 'rabbitturtle', 'monapassport', 'we bought a ')
+    state = 'actualStory'
+
+    startStory()
+
+}
+}
+
+function 
+
 
 
 
