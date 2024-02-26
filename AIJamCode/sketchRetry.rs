@@ -8,13 +8,19 @@ ml5 Example
 SketchRNN
 === */
 
+// The SketchRNN model
 let model;
+// Start by drawing
 let previous_pen = 'down';
+// Current location of drawing
 let x, y;
+// The current "stroke" of the drawing
 let strokePath;
 
+// For when SketchRNN is fixed
 function preload() {
-  model = ml5.sketchRNN('ant');
+  // See a list of all supported models: https://github.com/ml5js/ml5-library/blob/master/src/SketchRNN/models.js
+  model = ml5.sketchRNN('cat');
 }
 
 function setup() {
