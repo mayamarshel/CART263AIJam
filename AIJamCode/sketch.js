@@ -37,11 +37,8 @@ function setup() {
   
 
        // // Button to reset drawing
-  let button = createButton('clear');
+  let button = createButton('draw');
   button.mousePressed(startDrawing);
-   //button to change text
-  // let button2 = createButton('next');
-  // button2.mousePressed(changeValues('ant', 'butterfly', 'cactus', 'this is a test'));
 }
 
 function startStory(){
@@ -107,8 +104,12 @@ function selectOption() {
   selectedValue = dropdown.options[selectedIndex].text;
   console.log('value is ' + selectedValue)
 
-  turnScreenBlack()
-  state = 'blackScreen'
+  if (state === 'start'){
+    turnScreenBlack()
+    state = 'blackScreen'}
+    else if (state === 'actualStory') {
+      startStory()
+    }
 
   
 }
@@ -131,23 +132,30 @@ function turnScreenBlack() {
   text('i do not understand', 300, 300)
   text('try again', 300, 330)
   pop()
+
 //ADD CODE to change the button colors to black too
 }
 
 function countDown(){
+    //counts down to the waitlength on the black screen and then changes it back to original colors
   timer++;
   if (timer >= waitLength) {
     background(247, 171, 229)
     document.body.style.backgroundColor = "white";
-    changeValues('yogabicycle', 'rabbitturtle', 'monapassport', 'we bought a ')
+     //changes value to the random number from the appropriate array
+    
+     //begins actual sketchRNN initialization when option is chosen 
+    changeValues(randomValue(option1), randomValue(option2), randomValue(option2), 'we bought a ')
     state = 'actualStory'
-
-    startStory()
+    }
 
 }
-}
 
-function 
+function randomValue(array){
+    //selects random number and rounds it, gets a random index from the appropriate array and returns the value in that index 
+  const randomIndex = Math.floor(Math.random() * array.length);
+    return array[randomIndex];
+}
 
 
 
